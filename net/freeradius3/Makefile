@@ -27,6 +27,7 @@ PKG_CONFIG_DEPENDS := \
   FREERADIUS3_NOSSL
 
 include $(INCLUDE_DIR)/package.mk
+include ../../lang/python/python-package.mk
 
 define Package/freeradius3/config
   source "$(SOURCE)/Config.in"
