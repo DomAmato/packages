@@ -464,7 +464,7 @@ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
   CFLAGS+=-fPIC
   CONFIGURE_ARGS+= \
 		--with-rlm_python \
-		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include" \
+		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include/python2.7" \
 		--with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib"
   CONFIGURE_LIBS+= -python
 else
