@@ -337,6 +337,11 @@ define Package/freeradius3-mod-python
   TITLE:=the Python module for freeradius
 endef
 
+define Package/freeradius3-mod-python/conffiles
+/etc/freeradius3/mods-available/python
+/etc/freeradius3/mods-enabled/python
+endef
+
 define Package/freeradius3-mod-realm
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3
@@ -458,9 +463,10 @@ endif
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
   CFLAGS+=-fPIC
   CONFIGURE_ARGS+= \
-        --with-rlm_python \
-        --with-rlm_python-include-dir="$(STAGING_DIR)/usr/include" \
-        --with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib" 
+		--with-rlm_python \
+		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include" \
+		--with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib"
+  CONFIGURE_LIBS+= -python
 else
   CONFIGURE_ARGS+= --without-rlm_python
 endif
