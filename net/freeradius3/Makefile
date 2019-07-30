@@ -27,7 +27,7 @@ PKG_CONFIG_DEPENDS := \
   FREERADIUS3_NOSSL
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/python/python-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
 
 define Package/freeradius3/config
   source "$(SOURCE)/Config.in"
@@ -604,6 +604,8 @@ define BuildPlugin
 endef
 
 
+PYTHON_PKG_SETUP_DIR:=freeradius3-mod-python
+
 $(eval $(call BuildPackage,freeradius3))
 $(eval $(call BuildPackage,freeradius3-common))
 $(eval $(call BuildPackage,freeradius3-default))
@@ -631,6 +633,7 @@ $(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_mschap,))
 $(eval $(call BuildPlugin,freeradius3-mod-pap,rlm_pap,))
 $(eval $(call BuildPlugin,freeradius3-mod-passwd,rlm_passwd,))
 $(eval $(call BuildPlugin,freeradius3-mod-preprocess,rlm_preprocess,))
+$(eval $(call PyPackage,freeradius3-mod-python))
 $(eval $(call BuildPlugin,freeradius3-mod-python,rlm_python,))
 $(eval $(call BuildPlugin,freeradius3-mod-radutmp,rlm_radutmp,))
 $(eval $(call BuildPlugin,freeradius3-mod-realm,rlm_realm,))
