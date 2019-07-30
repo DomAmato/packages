@@ -459,16 +459,6 @@ else
   CONFIGURE_ARGS+= --without-rlm_eap_peap
 endif
 
-
-ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
-  CONFIGURE_ARGS+= \
-		--with-rlm_python \
-		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include/python2.7" \
-		--with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib"
-else
-  CONFIGURE_ARGS+= --without-rlm_python
-endif
-
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-eap-tls),)
   CONFIGURE_ARGS+= \
 		--with-rlm_eap_tls \
@@ -507,6 +497,15 @@ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-ldap),)
 		--with-rlm_ldap-lib-dir="$(STAGING_DIR)/usr/lib"
 else
   CONFIGURE_ARGS+= --without-rlm_ldap
+endif
+
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
+  CONFIGURE_ARGS+= \
+		--with-rlm_python \
+		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include/python2.7" \
+		--with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib"
+else
+  CONFIGURE_ARGS+= --without-rlm_python
 endif
 
 CONFIGURE_VARS+= \
