@@ -26,6 +26,8 @@ PKG_CONFIG_DEPENDS := \
   FREERADIUS3_OPENSSL \
   FREERADIUS3_NOSSL
 
+CFLAGS+=$(FPIC)
+
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
 
@@ -500,6 +502,7 @@ else
 endif
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
+  CFLAGS+=-fPIC
   CONFIGURE_ARGS+= \
 		--with-rlm_python \
 		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include/python2.7" \
