@@ -461,12 +461,10 @@ endif
 
 
 ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
-  CFLAGS+=-fPIC
   CONFIGURE_ARGS+= \
 		--with-rlm_python \
 		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include/python2.7" \
 		--with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib"
-  CONFIGURE_LIBS+= -python
 else
   CONFIGURE_ARGS+= --without-rlm_python
 endif
@@ -603,9 +601,6 @@ define BuildPlugin
   $$(eval $$(call BuildPackage,$(1)))
 endef
 
-
-PYTHON_PKG_SETUP_DIR:=freeradius3-mod-python
-
 $(eval $(call BuildPackage,freeradius3))
 $(eval $(call BuildPackage,freeradius3-common))
 $(eval $(call BuildPackage,freeradius3-default))
@@ -633,7 +628,6 @@ $(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_mschap,))
 $(eval $(call BuildPlugin,freeradius3-mod-pap,rlm_pap,))
 $(eval $(call BuildPlugin,freeradius3-mod-passwd,rlm_passwd,))
 $(eval $(call BuildPlugin,freeradius3-mod-preprocess,rlm_preprocess,))
-$(eval $(call PyPackage,freeradius3-mod-python))
 $(eval $(call BuildPlugin,freeradius3-mod-python,rlm_python,))
 $(eval $(call BuildPlugin,freeradius3-mod-radutmp,rlm_radutmp,))
 $(eval $(call BuildPlugin,freeradius3-mod-realm,rlm_realm,))
