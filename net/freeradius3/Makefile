@@ -505,8 +505,8 @@ ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-python),)
   CFLAGS+=-fPIC
   CONFIGURE_ARGS+= \
 		--with-rlm_python \
-		--with-rlm_python-include-dir="$(STAGING_DIR)/usr/include/python2.7" \
-		--with-rlm_python-lib-dir="$(STAGING_DIR)/usr/lib"
+		--with-rlm_python-include-dir="$(PYTHON_INC_DIR)" \
+		--with-rlm_python-lib-dir="$(PYTHON_LIB_DIR)" 
 else
   CONFIGURE_ARGS+= --without-rlm_python
 endif
