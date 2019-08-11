@@ -299,7 +299,7 @@ endef
 define Package/freeradius3-mod-magic
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3
-  TITLE:=Logintime module
+  TITLE:=Magic module
 endef
 
 define Package/freeradius3-mod-magic/conffiles
@@ -624,7 +624,7 @@ $(eval $(call BuildPlugin,freeradius3-mod-expr,rlm_expr,))
 $(eval $(call BuildPlugin,freeradius3-mod-files,rlm_files,))
 $(eval $(call BuildPlugin,freeradius3-mod-ldap,rlm_ldap,))
 $(eval $(call BuildPlugin,freeradius3-mod-logintime,rlm_logintime,))
-$(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_magic,))
+$(eval $(call BuildPlugin,freeradius3-mod-magic,rlm_magic,))
 $(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_mschap,))
 $(eval $(call BuildPlugin,freeradius3-mod-pap,rlm_pap,))
 $(eval $(call BuildPlugin,freeradius3-mod-passwd,rlm_passwd,))
