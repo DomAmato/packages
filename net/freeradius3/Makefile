@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=freeradius3
-PKG_VERSION:=release_3_0_11
+PKG_VERSION:=magic
 PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/FreeRADIUS/freeradius-server/archive
-PKG_HASH:=f0b32edb90368c3b9523e2baa792a1794d8bad662407f0d210a6c460541379b7
+PKG_SOURCE_URL:=https://github.com/DomAmato/freeradius-server/archive
+PKG_HASH:=3c81fd9231fb7583da4dfe0e82b41075c80677d5de7979651fb9ff659996ae62
 
 PKG_MAINTAINER:=Lucile Quirion <lucile.quirion@savoirfairelinux.com>
 PKG_LICENSE:=GPL-2.0
@@ -295,6 +295,19 @@ define Package/freeradius3-mod-logintime/conffiles
 /etc/freeradius3/mods-enabled/logintime
 endef
 
+
+define Package/freeradius3-mod-magic
+  $(call Package/freeradius3/Default)
+  DEPENDS:=freeradius3
+  TITLE:=Logintime module
+endef
+
+define Package/freeradius3-mod-magic/conffiles
+/etc/freeradius3/mods-available/magic
+/etc/freeradius3/mods-enabled/magic
+endef
+
+
 define Package/freeradius3-mod-mschap
   $(call Package/freeradius3/Default)
   DEPENDS:=freeradius3
@@ -488,6 +501,13 @@ else
   CONFIGURE_ARGS+= --without-rlm_ldap
 endif
 
+
+ifneq ($(SDK)$(CONFIG_PACKAGE_freeradius3-mod-magic),)
+  CONFIGURE_ARGS+= --with-rlm_magic
+else
+  CONFIGURE_ARGS+= --without-rlm_magic
+endif
+
 CONFIGURE_VARS+= \
 	LDFLAGS="$$$$LDFLAGS" \
 	LIBS="$(CONFIGURE_LIBS)" \
@@ -604,6 +624,7 @@ $(eval $(call BuildPlugin,freeradius3-mod-expr,rlm_expr,))
 $(eval $(call BuildPlugin,freeradius3-mod-files,rlm_files,))
 $(eval $(call BuildPlugin,freeradius3-mod-ldap,rlm_ldap,))
 $(eval $(call BuildPlugin,freeradius3-mod-logintime,rlm_logintime,))
+$(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_magic,))
 $(eval $(call BuildPlugin,freeradius3-mod-mschap,rlm_mschap,))
 $(eval $(call BuildPlugin,freeradius3-mod-pap,rlm_pap,))
 $(eval $(call BuildPlugin,freeradius3-mod-passwd,rlm_passwd,))
