@@ -304,7 +304,6 @@ endef
 
 define Package/freeradius3-mod-magic/conffiles
 /etc/freeradius3/mods-available/magic
-/etc/freeradius3/mods-enabled/magic
 endef
 
 
